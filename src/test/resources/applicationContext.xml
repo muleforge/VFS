@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans.dtd">
+<!--Application context -->
+<beans>
+   <!-- For setting VFS file system options.  Set bean on VFS connector -->
+  <bean id="fsFactory" class="org.mule.samples.vfs.FileSystemOptionsFactory" />
+  <bean id="fsOptions" class="org.apache.commons.vfs.FileSystemOptions" factory-bean="fsFactory"
+  factory-method="getFsOptions" />
+</beans>

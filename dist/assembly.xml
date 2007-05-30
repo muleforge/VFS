@@ -37,14 +37,88 @@ Assembly descriptor for the full distribution.
       </includes>
     </dependencySet>
     <!-- Non-Mule libraries -->
-    <!--
+
     <dependencySet>
       <outputDirectory>lib/opt</outputDirectory>
       <scope>runtime</scope>
       <includes>
         <include>com.jcraft:jsch</include>
       </includes>
+    </dependencySet>	  
+	      
+    <dependencySet>
+      <outputDirectory>lib/opt</outputDirectory>
+      <scope>runtime</scope>
+      <includes>
+        <include>commons-vfs:commons-vfs</include>
+      </includes>
     </dependencySet>
-    -->
+
+	<dependencySet>
+      <outputDirectory>lib/opt</outputDirectory>
+      <scope>runtime</scope>
+      <includes>
+        <include>jcifs:jcifs</include>
+      </includes>
+    </dependencySet>    
+
+	<dependencySet>
+      <outputDirectory>lib/opt</outputDirectory>
+      <scope>runtime</scope>
+      <includes>
+        <include>oro:oro</include>
+      </includes>
+    </dependencySet>  	
+
+	<dependencySet>
+      <outputDirectory>lib/opt</outputDirectory>
+      <scope>runtime</scope>
+      <includes>
+        <include>slide:webdavlib</include>
+      </includes>
+    </dependencySet>  			
+<!--
+			<dependency>
+			<groupId>commons-vfs</groupId>
+			<artifactId>commons-vfs</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-compress</groupId>
+			<artifactId>commons-compress</artifactId>
+			<version>20050911</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-net</groupId>
+			<artifactId>commons-net</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>oro</groupId>
+			<artifactId>oro</artifactId>
+			<version>2.0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>jcifs</groupId>
+			<artifactId>jcifs</artifactId>
+			<version>0.8.3</version>
+		</dependency>
+		<dependency>
+			<groupId>slide</groupId>
+			<artifactId>webdavlib</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>jsch</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.25</version>
+		</dependency>
+	-->	  
+	  
   </dependencySets>
 </assembly>

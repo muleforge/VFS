@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mule-configuration PUBLIC "-//SymphonySoft //DTD mule-configuration XML V1.0//EN"
+"http://www.symphonysoft.com/dtds/mule/mule-configuration.dtd">
+<mule-configuration id="SFTP_TEST" version="1.0">
+  <description>Sftp testing.</description>
+  <mule-environment-properties synchronous="true" />
+  <!-- SFTP-connector -->
+  <connector name="sftpConnector" className="org.mule.transports.vfs.VFSConnector">
+    <properties>
+      <property name="outputPattern" value="sftp-example-file.txt" />
+      <property name="fileExtension" value="*" />
+      <property name="includeSubfolders" value="false" />
+      <property name="pollingFrequency" value="10000" />
+    </properties>
+  </connector>
+  <connector name="SystemStreamConnector"
+  className="org.mule.providers.stream.SystemStreamConnector">
+    <properties>
+      <property name="promptMessage"
+      value="=====VFS SFTP Demo.  Enter file contents to be routed to SFTP service .=====" />
+      <property name="messageDelayTime" value="20000" />
+    </properties>
+  </connector>
+  <interceptor-stack name="default">
+    <interceptor className="org.mule.interceptors.LoggingInterceptor" />
+    <interceptor className="org.mule.interceptors.TimerInterceptor" />
+  </interceptor-stack>
+  <!-- MODEL -->
+  <model name="testSftp">
+
+    <mule-descriptor name="sftpReceive" implementation="org.mule.components.simple.BridgeComponent">
+      <inbound-router>
+        <endpoint address="vfs:sftp://user:password@host/files/sftp-source"
+        connector="sftpConnector" />
+      </inbound-router>
+      <outbound-router>
+        <router className="org.mule.routing.outbound.FilteringOutboundRouter">
+          <endpoint address="stream://System.out" />
+        </router>
+      </outbound-router>
+    </mule-descriptor>
+    <mule-descriptor name="sftpSend" implementation="org.mule.components.simple.BridgeComponent">
+      <inbound-router>
+        <endpoint address="stream://System.in" />
+      </inbound-router>
+      <outbound-router>
+        <router className="org.mule.routing.outbound.FilteringOutboundRouter">
+        <endpoint address="vfs:sftp://user:password@host/files/sftp-source"
+          connector="sftpConnector" />
+        </router>
+      </outbound-router>
+    </mule-descriptor>
+
+  </model>
+</mule-configuration>
+
+
