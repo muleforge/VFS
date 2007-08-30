@@ -6,44 +6,82 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
   <groupId>org.mule.transports</groupId>
   <artifactId>mule-transport-vfs</artifactId>
   <packaging>jar</packaging>
-  <version>1.3.3</version>
+  <version>1.0</version>
+	<properties>
+		<muleVersion>1.3.3</muleVersion>
+	</properties>
+	<distributionManagement>
+		<repository>
+			<id>muleforge.webdav.releases</id>
+			<url>dav:https://dav.muleforge.org/repository/${artifactId}/</url>
+		</repository>
+		<snapshotRepository>
+			<id>muleforge.webdav.snapshots</id>
+			<url>dav:https://dav.muleforge.org/snapshots.repository/${artifactId}/</url>
+		</snapshotRepository>
+		<site>
+			<id>muleforge.webdav.sites</id>
+			<url>dav:https://dav.muleforge.org/${artifactId}/</url>
+		</site>
+	</distributionManagement>
+	<build>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId>
+				<version>1.0-beta-2</version>
+			</extension>
+		</extensions>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<finalName>${artifactId}-${muleVersion}</finalName>
+					<descriptors>
+						<descriptor>assembly.xml</descriptor>
+					</descriptors>
+					<appendAssemblyId>false</appendAssemblyId>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
   <name>VFS Transport</name>
   <description>Send and Receive Mule Messages over Apache VFS FileSystems</description>
   <dependencies>
     <dependency>
       <groupId>org.mule.transports</groupId>
       <artifactId>mule-transport-vm</artifactId>
-      <version>${version}</version>
+      <version>${muleVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.mule.transports</groupId>
       <artifactId>mule-transport-tcp</artifactId>
-      <version>${version}</version>
+      <version>${muleVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.mule.transports</groupId>
       <artifactId>mule-transport-file</artifactId>
-      <version>${version}</version>
+      <version>${muleVersion}</version>
     </dependency>
 	<dependency>
       <groupId>org.mule.transports</groupId>
       <artifactId>mule-transport-stream</artifactId>
-      <version>${version}</version>
+      <version>${muleVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.mule.modules</groupId>
       <artifactId>mule-module-client</artifactId>
-      <version>${version}</version>
+      <version>${muleVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.mule.tests</groupId>
       <artifactId>mule-tests-core</artifactId>
-      <version>${version}</version>
+      <version>${muleVersion}</version>
     </dependency>
     <dependency>
       <groupId>org.mule.tests</groupId>
       <artifactId>mule-tests-functional</artifactId>
-      <version>${version}</version>
+      <version>${muleVersion}</version>
     </dependency>
     <dependency>
       <groupId>commons-vfs</groupId>
